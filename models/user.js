@@ -47,7 +47,7 @@ const userSchema = new Schema(
 const User = model('user', userSchema);
 
 // allows to grab friends & show how many
-userSchema.virtual('friends').get(function () {
+userSchema.virtual('friendsList').get(function () {
     return this.friends.length;
 });
 
