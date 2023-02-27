@@ -1,6 +1,6 @@
 const { Thought, User } = require('../models');
 
-const thoughtController = {
+module.exports = {
     //get thought by id
     getThoughtId({ params }, res) {
         Thought.findOne({ _id: params.thoughtId })
@@ -87,4 +87,3 @@ const thoughtController = {
     }
 };
 
-module.exports = thoughtController;

@@ -1,11 +1,11 @@
 const { User } = require('../models');
 
-const userController = {
+module.exports = {
     getUserId({ params }, res) {
         // find user by id
         User.findOne({ _id: params.id })
-            .populate('friends')
-            .populate('thoughts')
+            .populate('friendsList')
+            .populate('thoughtsList')
             .select('-__v')
             .then(userData => {
                 if (!userData) {
@@ -31,6 +31,7 @@ const userController = {
     createUser({ body }, res) {
         User.create(body)
         .then(userData => res.json(userData))
+        .catch((err) => res.status(400).json(err));
     },
     // update user by id
     updateUser({ params, body }, res) {
@@ -78,5 +79,3 @@ const userController = {
         }) .catch(err => res.status(400).json(err));
     }
 };
-
-module.exports = userController;
